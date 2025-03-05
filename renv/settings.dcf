@@ -1,0 +1,11 @@
+bioconductor.version:
+external.libraries: /usr/local/lib/R/site-library, /usr/local/lib/R/library,
+    /usr/lib/R/site-library
+ignored.packages:
+package.dependency.fields: Imports, Depends, LinkingTo
+r.version:
+snapshot.type: explicit
+use.cache: TRUE
+vcs.ignore.cellar: TRUE
+vcs.ignore.library: TRUE
+vcs.ignore.local: TRUE
