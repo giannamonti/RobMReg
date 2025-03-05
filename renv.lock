@@ -167,7 +167,7 @@
       "RemoteUsername": "giannamonti",
       "RemoteRepo": "MRegCovD",
       "RemoteRef": "main",
-      "RemoteSha": "ed305551a9e4587d92ce2bc1a613abf5a09fc80e",
+      "RemoteSha": "296b9e2e5b507269314e628114c5a10000b15486",
       "Remotes": "zatonovo/lambda.tools, zatonovo/tawny.types, cran/futile.matrix, cran/ppls, cran/parcor, cran/tawny",
       "Requirements": [
         "Matrix",
@@ -180,7 +180,7 @@
         "tawny",
         "tawny.types"
       ],
-      "Hash": "c8c041b1d8b6db88b10cd92c70e391e2"
+      "Hash": "68da71d6d2ac74e6834ed1850702a9d6"
     },
     "Matrix": {
       "Package": "Matrix",
