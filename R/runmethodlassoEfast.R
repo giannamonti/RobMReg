@@ -305,6 +305,21 @@ runmethodlassoEfilter <- function(Y,X,typeset="square",trimset=1){
        Wstat=Wstat,beta=fit$beta, var.evalues=var.evalues,var.screen=var.screen)
 }
 
+#' run method lasso Efast
+#'
+#' @param Y .
+#' @param X .
+#' @param typeset .
+#' @param trimset .
+#' @param M .
+#' @param q .
+#' @param filter .
+#'
+#' @return result
+#' @export
+#'
+#' @examples
+#' NULL
 runmethodlassoEfast <- function(Y,X,typeset="square",trimset=1,M=50,q=0.2,filter=FALSE){
   # M replications for e-values
   var.screen <- NULL
