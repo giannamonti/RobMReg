@@ -18,11 +18,23 @@ Depends:
 Pending:
     None 
 Imports:
-    robustbase,
+    MRCE,
     MRCKF,
     MRegCovD,
+    robustbase,
+    knockoff,
+    RSpectra,
     MethylCapSig,
+    corpcor,
+    pracma,
+    compositions,
+    glasso,
+    glmnet,
+    rrcov,
+    mvoutlier
+Suggests: 
     ppls,
+    robustHD,
     parcor,
     tawny,
     tawny.types,
@@ -30,11 +42,6 @@ Imports:
     futile.matrix,
     Matrix,
     pcaPP,
-    pracma,
-    rrcov,
-    MRCE,
-    robustHD,
-    mvoutlier,
     reshape2,
     dplyr,
     ggplot2,
@@ -44,8 +51,7 @@ Imports:
     logging,
     magrittr,
     scriptName,
-    yaml
-Suggests: 
+    yaml,
     assertthat,
     cli (>= 3.3.0),
     devtools,

@@ -147,7 +147,7 @@ runmethodlasso <- function(Y,XX,X,typeset="square",trimset=1){
       all.residuals <- matrix(NA,nrow(Y),ncol(Y))
       for (i in 1:ncol(Y)){
         lam <- cv.glmnet(X,Y[,i])$lambda.1se
-        res <- glmnet::glmnet(X,Y[,i],lambda=lam)
+        res <- glmnet(X,Y[,i],lambda=lam)
         all.residuals[,i] <- Y[,i]-predict(res,X)
       }      
       Omega <- solve(cov(all.residuals))
@@ -580,13 +580,32 @@ evalsimF <- function(listres,listtrue,listvar.screen,p=200,K=5){
   list(fdr=fdr,tpr=tpr)
 }
 
+is_posdef = function(A, tol=1e-9) {
+  p = nrow(matrix(A))
+  
+  if (p<500) {
+    lambda_min = min(eigen(A)$values)
+  }
+  else {
+    oldw <- getOption("warn")
+    options(warn = -1)
+    lambda_min = RSpectra::eigs(A, 1, which="SM", opts=list(retvec = FALSE, maxitr=100, tol))$values
+    options(warn = oldw)
+    if( length(lambda_min)==0 ) {
+      # RSpectra::eigs did not converge. Using eigen instead."
+      lambda_min = min(eigen(A)$values)
+    }
+  }
+  return (lambda_min>tol*10)
+}
+
 
 create.second_order_PF <- function (X, method = c("asdp", "equi", "sdp"), shrink = TRUE, robust=TRUE) 
 {
   method = match.arg(method)
   if (!shrink) {
     if (robust){
-      require(rrcov)
+      #require(rrcov)
       res <- CovRobust(X)
       mu <- res@center
       Sigma <- res@cov
