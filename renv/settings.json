@@ -2,8 +2,7 @@
   "bioconductor.version": [],
   "external.libraries": [
     "/usr/local/lib/R/site-library",
-    "/usr/local/lib/R/library",
-    "/usr/lib/R/site-library"
+    "/usr/local/lib/R/library"
   ],
   "ignored.packages": [],
   "package.dependency.fields": [

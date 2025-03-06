@@ -7,7 +7,10 @@ Authors@R:
              family = "Monti",
              role = c("aut", "cre"),
              email = "gianna.monti@unimib.it",
-             comment = c()))
+             comment = c()),
+    person(given = "Peter",
+           family = "Filzmoser",
+           role = "ctb"))
 Description: TODO:description.
 License: MIT + file LICENSE
 URL: https://www.unimib.it,

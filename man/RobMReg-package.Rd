@@ -21,5 +21,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Gianna Monti \email{gianna.monti@unimib.it}
 
+Other contributors:
+\itemize{
+  \item Peter Filzmoser [contributor]
+}
+
 }
 \keyword{internal}
