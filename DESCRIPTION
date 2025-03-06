@@ -19,8 +19,6 @@ Pending:
     None 
 Imports:
     MRCE,
-    MRCKF,
-    MRegCovD,
     robustbase,
     knockoff,
     RSpectra,
@@ -66,9 +64,7 @@ Suggests:
     stringr,
     usethis,
     testthat (>= 2.1.0)
-Remotes: aasrinivasan/MRCKF,
-  giannamonti/MRegCovD,
-  giannamonti/MethylCapSig,
+Remotes: giannamonti/MethylCapSig,
   zatonovo/lambda.tools,
   zatonovo/tawny.types,
   cran/futile.matrix,
