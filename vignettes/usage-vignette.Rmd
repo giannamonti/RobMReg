@@ -1,5 +1,5 @@
 ---
-title: "Vignette"
+title: "RobMReg Vignette"
 author: "dsuser"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -16,7 +16,84 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
-plot(1:3)
+Firstly, we must load the RobMReg function into R.
+
+```{r, warning=F, message=F}
+library(RobMReg)
 ```
+
+In this section, we define the fundamental parameter settings and simulate data based on a multiple linear model.
+
+```{r, warning=F, message=F}
+# Initialize Parameters
+n = 100        # number of samples
+p = 200        # number of features (without reference)
+pstar = p + 1  #number of features (including reference)
+K = 2          # number of responses
+A = 3          # signal amplitude
+sp = .05       # sparsity percentage
+errorRho = .7  # error rho for E
+
+# Generate covariance of W
+sigma = matrix(0, nrow = pstar, ncol = pstar)
+for(i in 1:pstar){
+  for(j in 1:pstar){
+    sigma[i,j] = .5^(abs(i-j))
+  }
+}
+
+# generate W (latent log-normal data)
+means = rep(1, pstar)
+W = mvlognormal(n, means, Sigma = diag(sigma), R = sigma)
+colnames(W) = paste("Taxa", 1:ncol(W))
+
+# generate B (coefficient matrix)
+Aset = seq(-A,A)
+if(length(which(Aset==0))!=0){
+  Aset = Aset[-which(Aset==0)]
+}
+B = matrix(0, nrow = p, ncol = K)
+totalSig = p*K
+nSig = floor(totalSig*sp)
+signalEntries = sort(sample(1:totalSig, size = nSig, replace = F))
+Bset = sample(Aset, nSig, replace = T)
+B[signalEntries] = Bset
+
+
+# generate error matrix E
+errorCovariance = matrix(0,K, K)
+for(i in 1:K){
+  for(j in 1:K){
+    errorCovariance[i,j] = errorRho^abs(i-j)
+  }
+}
+
+E = matrix(0, nrow = n, ncol = K)
+for(i in 1:n){
+  ei = rnorm(K, mean = rep(0, K), errorCovariance)
+  E[i,] = ei
+}
+
+# generate Z (compositional matrix)
+Z = acomp(W)
+Z = as.matrix(Z)
+
+# generate X (alr-transformation matrix)
+ref = Z[,pstar]
+X = matrix(0, nrow = n, ncol = p)
+for(t in 1:ncol(X)){
+  X[,t] = log(Z[,t]/ref)
+}
+
+# generate Y (response matrix)
+Y = X%*%B + E
+colnames(Y) = paste("Response", 1:ncol(Y))
+set.seed(1234)  
+
+resrfilter <- runmethodlassoEfast(Y, X, typeset = "tukey", 
+                                  trimset = 0.5, filter = TRUE)
+resrfilter$var.evalues
+```
+
+
 

@@ -1,8 +1,8 @@
 # RobMReg
-Robust Multivariate Regression for Compositional Data
 
-This repository contains the **R code** used for the paper: 
-
+This repository contains the **R code** implementation of the 
+Robust Multiple Response Compositional Derandomised 
+Knockoff Filter (RobMRKF-Derand) used for the paper: 
 
 > **"Robust multivariate regression controlling
 false discoveries for microbiome data"**  
